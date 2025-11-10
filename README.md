@@ -1,8 +1,10 @@
-# Sistema de Triangulação de Motos - IoT Prototype (Sprint 3)
+# Sistema de Triangulação de Motos - IoT Prototype (Sprint 4)
 
 ## 📋 Descrição do Projeto
+Este projeto apresenta um protótipo funcional de monitoramento inteligente de motos, desenvolvido como parte da Sprint 4 – Disruptive Architectures: IoT, IoB & Generative IA .
+A solução simula dispositivos IoT enviando leituras de RFID, GPS e movimento para uma API Flask, que persiste os dados em SQLite e os exibe em um dashboard web em tempo real via Flask-SocketIO.
 
-Protótipo funcional de um sistema de gerenciamento inteligente de motos, utilizando simuladores Python para sensores RFID e atuadores, com integração em tempo real via HTTP. O sistema permite monitoramento de motos em diferentes pontos de um pátio, persistência de dados e visualização em dashboard local.
+O sistema entrega um fluxo completo de captura → processamento → visualização, com ênfase em integração, usabilidade e arquitetura escalável.
 
 ## 🎯 Problema Resolvido
 
@@ -25,21 +27,22 @@ Protótipo funcional de um sistema de gerenciamento inteligente de motos, utiliz
 *   HTTP/REST API
 *   JSON (formato de dados)
 *   Dashboard em Flask + HTML/JS
+*   API de .NET conectada
 
 ### Links:
 
 *   Pitch = https://www.youtube.com/watch?si=OhGFE0eqJH3WFoXn&v=tFLwiapUUiE&feature=youtu.be
-*   Demostração = https://youtu.be/RRX9Q_--v2s
+*   Demostração = https://www.youtube.com/watch?v=4A9f6w5B5mk
 
 ## 🔧 Como Rodar o Projeto
 
 ### Clonar o repositório e criar ambiente virtual:
 
 ```bash
-git clone <URL_DO_REPO>
+git clone <[URL_DO_REPO>](https://github.com/VictorAntonopoulos/IOT-ATT )
 cd IOT
 python -m venv venv
-vvenv\\Scripts\\activate   # Windows
+venv\\Scripts\\activate   # Windows
 pip install -r requirements.txt
 ```
 
@@ -86,15 +89,18 @@ Formato JSON:
 
 ### Fluxo de operação:
 
-*   Sensores simulados detectam motos (IDs RFID) e geram potência do sinal aleatória.
-*   Dados são enviados via HTTP POST para a API.
+*   Simuladores IoT geram leituras de RFID e intensidade de sinal.
+*   Os dados são enviados via HTTP POST à API.
 *   API armazena os dados no banco SQLite.
+*   O Socket.IO envia as atualizações para o dashboard web.
 *   Dashboard consome API via REST + WebSocket e exibe telemetria em tempo real.
+*   O dashboard exibe os dados em tempo real, com gráficos e mapa
 
 ### Testes Funcionais Simulados:
 
-*   Motos desaparecendo ou trocando de posição.
+*   Simulação de perda de sinal e troca de posição.
 *   Comunicação de até 3 dispositivos IoT simultaneamente.
+*   Validação de latência e atualização em tempo real
 
 ## 🏗 Arquitetura do Sistema
 
@@ -119,45 +125,19 @@ Formato JSON:
 
 Dashboard recebe atualizações em tempo real via Flask-SocketIO.
 
-## 📊 Dashboard
+## 📊 Dashboard – Funcionalidades
 
-### Funcionalidades:
+| **Função** | **Descrição** |
+|-------------|----------------|
+| **Leituras recentes** | Exibição instantânea das últimas leituras RFID |
+| **Mapa interativo** | Localização das motos simuladas com Leaflet |
+| **Gráficos** | Frequência e volume de leituras (Chart.js) |
+| **Logs** | Histórico de leituras (até 100 mais recentes) |
+| **Atualização em tempo real** | Integrado via Flask-SocketIO |
 
-*   Leituras recentes e status dos dispositivos
-*   Histórico persistido em SQLite
-*   Atualização em tempo real via WebSocket
-*   Visualização de dados em gráficos simples
 
-## 🔮 Aplicações Futuras
 
-*   Integração com hardware real (ESP32 + RFID)
-*   Algoritmos de triangulação mais precisos
-*   Notificações e alertas automáticos
-*   Protocolo MQTT para menor latência
-*   Expansão para mais sensores e atuadores
 
-## 📋 Resultados Parciais
-
-### ✅ Concluído:
-
-*   Simuladores Python funcionais para 3 dispositivos
-*   Comunicação HTTP/REST API
-*   Persistência de dados com SQLite
-*   Dashboard em tempo real com Flask-SocketIO
-*   Estrutura modular e extensível
-
-### 🔄 Em Desenvolvimento:
-
-*   Algoritmo de triangulação refinado
-*   Testes com hardware real
-*   Alertas e notificações em tempo real
-
-## 🚀 Próximos Passos
-
-*   Testes de campo com hardware físico
-*   API de consulta de histórico avançada
-*   Dashboard com mais métricas e filtros
-*   Integração com algoritmos de ML para análise de padrões
 
 ## Informações Adicionais
 
